@@ -1,0 +1,58 @@
+extends ./../layouts/header.pug
+
+block title 
+      title= title
+
+
+block cssLink
+      link(rel="stylesheet", href="/css/style.css")
+      link(rel="stylesheet", href="/css/login.css")
+
+
+block jsScript
+    script(src="/js/login.js" defer) 
+
+
+block bodyContent
+     .wrapper 
+            .login_wrapper 
+                  h1 Register 
+                  form(action="/login", method="post")
+                        div.d-flex 
+                              div.me-2 
+                                    label(for="firstName") 
+                                          b First Name
+                                    input#firstName(type="text",class="form-control" name="firstName" placeholder="Enter your first name or email" required="")
+                                    p.error.firstName-error firstName is required     
+
+                              div 
+                                    label(for="lastName") 
+                                          b Last Name
+                                    input#lastName(type="text",class="form-control" name="lastName" placeholder="Enter your Last Name" required="")
+                                    p.error.lastName-error lastName is required
+
+
+                        label(for="username") 
+                              b User Name
+                        input#username(type="text",class="form-control" name="username" placeholder="Enter your user name" required="")
+                        p.error.username-error username is required
+
+                        label(for="email") 
+                              b Email
+                        input#email(type="text",class="form-control" name="email" placeholder="Enter your email" required="")
+                        p.error.email-error email is required
+
+                        label(for="password") 
+                              b Password
+                        input#password(type="password",class="form-control" name="password" placeholder="Enter your password" required=true)
+                        p.error.password-error password is required
+
+                        label(for="confirmPassword") 
+                              b Password
+                        input#confirmPassword(type="password",class="form-control" name="confirmPassword" placeholder="Enter your confirmPassword" required=true)
+                        p.error.confirmPassword-error confirmPassword is required
+
+                        input(type="submit",class="form-control" value="Register")
+                  
+                  p Already have an account?
+                       a(href="/login") Login here
