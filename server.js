@@ -9,6 +9,7 @@ const {
 } = require("./middlewares/common/errorHandlers");
 const cookieParser = require("cookie-parser");
 const authRouter = require("./routes/auth/authRoute");
+const mongoose = require('mongoose');
 
 //app initialization
 const app = express();
@@ -37,6 +38,17 @@ app.use(errorHandler);
 
 //listening
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log("Server is running on port " + (process.env.PORT || 3000));
-});
+mongoose.connect(process.env.DB_URI,{
+  useUnifiedTopology:true,
+useNewUrlParser:true
+})
+
+.then(()=>{
+  app.listen(process.env.PORT || 3000, () => {
+    console.log("Server is running on port " + (process.env.PORT || 3000));
+  });
+})
+
+.catch(err=>{
+  console.log(err);
+})
